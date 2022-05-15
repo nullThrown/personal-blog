@@ -1,0 +1,21 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "a website for my own personal blog posts\"",
+  "main": "server.js",
+  "scripts": {
+    "devstart": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "weston peters",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
