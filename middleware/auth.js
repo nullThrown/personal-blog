@@ -1,20 +1,19 @@
-const verifyUser = async (req, res, next) => {
-  let { username } = req.body;
-  if (!username) {
-    username = req.params.username;
-  }
-  try {
-    if (!username) throw 'invalid_credentials';
-    const user = await User.findOne({ username: username });
-    if (!user) throw 'invalid_credentials';
-  } catch (err) {
-    if (err === 'invalid_credentials') {
-      return res.status(401).json(invalid_credentials);
-    }
+const jwt = require('jsonwebtoken');
+const { unauthenticated } = require('../util/responseTypes');
 
-    return res.status(500).json({ error: 'server_error' });
+const verifyToken = (req, res, next) => {
+  const token = req.header('x_auth_token');
+
+  if (!token) {
+    return res.status(400).json({ error: unauthenticated });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWTSECRET);
+    req.user = decoded.user;
+  } catch (err) {
+    return res.status(400).json({ error: unauthenticated });
   }
   next();
 };
-
-module.exports = verifyUser;
+module.exports = verifyToken;
