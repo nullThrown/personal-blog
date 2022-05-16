@@ -6,8 +6,8 @@ const email_already_exists = { error: 'email_already_exists' };
 const server_error = { error: 'server_error' };
 // success
 const resource_deleted = { success: 'resource_deleted' };
-// const resource_created = 'resource_created';
-// const resource_edited = 'resource_edited';
+const resource_created = { success: 'resource_created' };
+const resource_updated = { success: 'resource_updated' };
 
 module.exports = {
   unauthenticated,
@@ -17,4 +17,6 @@ module.exports = {
   email_already_exists,
   server_error,
   resource_deleted,
+  resource_created,
+  resource_updated,
 };
