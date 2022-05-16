@@ -1,21 +1,30 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const verifyUser = require('../middleware/auth');
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
-const { email_already_exists, server_error } = require('../models/fieldTypes');
+const {
+  email_already_exists,
+  server_error,
+  resource_created,
+} = require('../util/responseTypes');
+
 // ROUTE POST api/auth/register
 // DESC register a new user
 // ACCESS public
 router.post('/register', async (req, res) => {
-  const { username } = req.body;
+  const { username, email, password } = req.body;
   try {
-    let user = await User.findOne({ username: username });
+    let user = await User.findOne({ email: email });
     if (user) {
       res.status(422).json(email_already_exists);
     } else {
-      user = new User({ username });
+      const salt = await bcrypt.genSalt(12);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      user = new User({ username, email, password: hashedPassword });
       await user.save();
-      res.status(201).json(user);
+      res.status(201).json(resource_created);
     }
   } catch (err) {
     console.log(err);
@@ -26,11 +35,38 @@ router.post('/register', async (req, res) => {
 // ROUTE POST api/auth/login
 // DESC login a user
 // ACCESS public
-router.post('/login', verifyUser, async (req, res) => {
-  const { username } = req.body;
+router.post('/login', async (req, res) => {
   try {
-    const user = await User.findOne({ username: username }).populate('entries');
-    res.json(user);
+    const { username, password } = req.body;
+    const user = await User.findOne({ username: username });
+    if (!user) {
+      return res.status(400).json(invalid_credentials);
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json(invalid_credentials);
+    }
+    // authsecret
+    const payload = {
+      user: {
+        id: user.id,
+      },
+    };
+    jwt.sign(
+      payload,
+      process.env.JWTSECRET,
+      { expiresIn: '20d' },
+      (err, token) => {
+        if (err) {
+          return res.status(500).json(server_error);
+        }
+        user.password = undefined;
+        res.json({
+          user,
+          token,
+        });
+      }
+    );
   } catch (err) {
     console.log(err);
     res.status(500).json(server_error);
