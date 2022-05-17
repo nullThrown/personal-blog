@@ -1,0 +1,14 @@
+General 
+  *look through components and reorganize them
+  *add headings to typography
+
+  *add routing for landing/login/home/create
+  *make sure banners are lined up
+  *add react query to POST login 
+  *store JWT token in LS 
+  *pass JWT as header response
+  *add react query to POST create
+  *add react query to GET user
+  *add react query to GET all posts
+  *add pagination for posts
+  *add filter option  
