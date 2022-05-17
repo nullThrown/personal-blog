@@ -7,7 +7,7 @@ import Home from './pages/Home';
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Home />
+      <Test />
     </ChakraProvider>
   );
 }
