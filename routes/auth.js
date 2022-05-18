@@ -8,7 +8,17 @@ const {
   email_already_exists,
   server_error,
   resource_created,
+  token_valid,
 } = require('../util/responseTypes');
+
+// ROUTE POST api/auth
+// DESC check if token is valid
+// ACCESS public
+
+// middleware verifyUser will send a not_authorized response if token is invalid
+router.get('/', verifyUser, async (req, res) => {
+  res.status(200).json(token_valid);
+});
 
 // ROUTE POST api/auth/register
 // DESC register a new user
