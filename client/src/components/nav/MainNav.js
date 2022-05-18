@@ -1,8 +1,8 @@
 import { Link, Box, Flex } from '@chakra-ui/react';
 // import { Link as ReachLink } from '@reach/router';
 
-// chakra routing react-router-dom integration
 {
+  // chakra routing react-router-dom integration
   /* <Link as={ReachLink} to="/home">
   Home
 </Link>; */
