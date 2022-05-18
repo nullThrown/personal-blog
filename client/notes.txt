@@ -3,12 +3,19 @@ General
   *add headings to typography
 
   *add routing for landing/login/home/create
-  *make sure banners are lined up
-  *add react query to POST login 
+    add browserRouter to entire component
+    add redirects to '/' if (user == true) for route: '/login' 
+    
+  *add react query to all routes 
+    -how to structure react query code
+  *create axios base config
+    -pass JWT as header response
+  *add react query to GET user, GET all posts, & POST create
   *store JWT token in LS 
-  *pass JWT as header response
-  *add react query to POST create
-  *add react query to GET user
-  *add react query to GET all posts
+  *look at protected-routes project to understand the different methods of auth routing 
+  *make sure banners are lined up
+    -add new banner image for /create 
   *add pagination for posts
-  *add filter option  
+  *add filter option to search posts  
+
+
