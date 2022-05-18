@@ -1,20 +1,15 @@
-import React from 'react';
-import { Box, ChakraProvider, theme } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import Test from './pages/Test';
-import Landing from './pages/Landing';
-import Home from './pages/Home';
+import { ChakraProvider, theme } from '@chakra-ui/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppRoutes from './routes/index';
+
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Test />
+      <Router>
+        <AppRoutes />
+      </Router>
     </ChakraProvider>
   );
 }
 
 export default App;
-
-// component for changing color theme: light/dark
-{
-  /* <ColorModeSwitcher justifySelf="flex-end" /> */
-}
