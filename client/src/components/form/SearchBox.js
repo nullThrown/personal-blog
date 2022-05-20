@@ -12,7 +12,7 @@ const SearchBox = () => {
   return (
     <FormControl as="form" width="300px">
       <HStack>
-        <FormLabel htmlfor="search"></FormLabel>
+        <FormLabel htmlFor="search"></FormLabel>
         <Input id="search" />
         <Button>Search</Button>
       </HStack>
