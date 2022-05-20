@@ -2,16 +2,20 @@ General
   *look through components and reorganize them
   *add headings to typography
 
-  *add routing for landing/login/home/create
-    add browserRouter to entire component
-    add redirects to '/' if (user == true) for route: '/login' 
-    
+  *center login component
+  *create API axios calls 
+    -login 
+    -logout
+    -get single blog post (should be pulled from cache i suppose) 
+
+    -create new post
+    -get all
+    -edit post
+    -delete post 
+
   *add react query to all routes 
     -how to structure react query code
-  *create axios base config
-    -pass JWT as header response
   *add react query to GET user, GET all posts, & POST create
-  *store JWT token in LS 
   *look at protected-routes project to understand the different methods of auth routing 
   *make sure banners are lined up
     -add new banner image for /create 
