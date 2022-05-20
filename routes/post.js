@@ -44,6 +44,7 @@ router.post('/create', verifyUser, async (req, res) => {
 // ROUTE PUT api/post/edit
 // DESC edit a blog post
 // ACCESS private
+// this might need to return the edited post...
 router.put('/edit', verifyUser, async (req, res) => {
   const { author, title, body, category, private, keywords } = req.body;
   const postId = mongoose.Types.ObjectId(req.body.postId);
