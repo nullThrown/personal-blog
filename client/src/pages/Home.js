@@ -6,7 +6,6 @@ import Banner from '../components/misc/Banner';
 import MainNav from '../components/nav/MainNav';
 import SearchBox from '../components/form/SearchBox';
 import Post from '../components/features/Post';
-import { useEffect } from 'react';
 
 const Home = () => {
   const { isLoading, data, isError, error } = useQuery('posts', fetchPosts);
@@ -28,7 +27,7 @@ const Home = () => {
       <Divider m="1em 0" />
       <VStack spacing="32px">
         {data.data.map(post => {
-          return <Post post={post} />;
+          return <Post key={post._id} post={post} />;
         })}
       </VStack>
     </MainContainer>
