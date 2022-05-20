@@ -1,6 +1,5 @@
 import { Link, Box, Flex } from '@chakra-ui/react';
-// import { Link as ReachLink } from '@reach/router';
-
+import { Link as RouterLink } from 'react-router-dom';
 {
   // chakra routing react-router-dom integration
   /* <Link as={ReachLink} to="/home">
@@ -18,15 +17,17 @@ export const MainNav = () => {
     >
       <Flex as="nav">
         <Link
+          as={RouterLink}
           fontSize="lg"
           fontWeight="500"
           color="blue.900"
           textDecoration="none"
-          to="/home"
+          to="/"
         >
           Home
         </Link>
         <Link
+          as={RouterLink}
           ml=".6em"
           fontSize="lg"
           fontWeight="500"
