@@ -9,6 +9,8 @@ const {
   server_error,
   resource_created,
   token_valid,
+  token_invalid,
+  invalid_credentials,
 } = require('../util/responseTypes');
 
 // ROUTE POST api/auth
@@ -70,9 +72,7 @@ router.post('/login', async (req, res) => {
         if (err) {
           return res.status(500).json(server_error);
         }
-        user.password = undefined;
         res.json({
-          user,
           token,
         });
       }
