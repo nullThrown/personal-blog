@@ -2,7 +2,6 @@ General
   *look through components and reorganize them
   *add headings to typography
 
-  *center login component
   *create API axios calls 
     -login 
     -logout
@@ -13,6 +12,8 @@ General
     -edit post
     -delete post 
 
+  * UseAuth() custom hook is not firing on redirect after login
+    -it only fires on component mount -- will require another method
   *add react query to all routes 
     -how to structure react query code
   *add react query to GET user, GET all posts, & POST create
