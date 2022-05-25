@@ -1,7 +1,7 @@
 import { Container, VStack, Heading, Text } from '@chakra-ui/react';
 import Login from '../components/button/Login';
 import Banner from '../components/misc/Banner';
-import { MainContainer } from '../components/base/MainContainer';
+import MainContainer from '../components/base/MainContainer';
 const Landing = () => {
   return (
     <MainContainer>
