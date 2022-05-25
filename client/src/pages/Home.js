@@ -1,7 +1,7 @@
 import { Box, Heading, Divider, VStack } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
-import fetchPosts from '../api/posts/fetchPosts';
-import { MainContainer } from '../components/base/MainContainer';
+import { fetchPosts } from '../api/posts';
+import MainContainer from '../components/base/MainContainer';
 import Banner from '../components/misc/Banner';
 import MainNav from '../components/nav/MainNav';
 import SearchBox from '../components/form/SearchBox';
@@ -26,7 +26,7 @@ const Home = () => {
       <SearchBox />
       <Divider m="1em 0" />
       <VStack spacing="32px">
-        {data.data.map(post => {
+        {data.map(post => {
           return <Post key={post._id} post={post} />;
         })}
       </VStack>
