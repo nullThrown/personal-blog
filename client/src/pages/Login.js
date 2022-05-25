@@ -8,24 +8,49 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api/auth';
 import storage from '../util/storage';
 import ErrorMsg from '../components/typography/ErrorMsg';
+
 export const Login = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: '',
     password: '',
   });
-
+  const mutation = useMutation(
+    user => {
+      return loginUser(user);
+    },
+    {
+      onError: (data, variables, context) => {
+        console.log('mutation was failure:', data);
+      },
+      onSuccess: (data, variables, context) => {
+        storage.setToken(data.data.token);
+        navigate('/');
+      },
+    }
+  );
   const onInputChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = e => {
-    e.preventDefault();
-    const user = useQuery('user');
-  };
+  // const handleLogin = e => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
+  //   const res = loginUser(user);
+  //   console.log(res);
+  //   setIsLoading(false);
+  //   if (res.status >= 200 && res.status <= 299) {
+  //     storage.setToken(res.data.token);
+  //     navigate('/');
+  //   } else {
+  //     setIsError(true);
+  //   }
+  // };
   return (
     <Flex justify="center" height="100vh" mt="10em">
       <FormControl
@@ -57,18 +82,17 @@ export const Login = () => {
           name="password"
           onChange={onInputChange}
         />
-        <Box mt=".5em">
-          {/* is error?? */}
-          <ErrorMsg msg="wrong credentials" />
-        </Box>
+        <Box mt=".5em">{mutation.isError && <ErrorMsg msg="" />}</Box>
         <Flex justifyContent="center" mt="1em">
           <Button
             type="submit"
             variant="outline"
             color="black"
             colorScheme="blackAlpha"
-            isLoading={false}
-            onSubmit={handleLogin}
+            isLoading={mutation.isLoading}
+            onClick={() => {
+              mutation.mutate(user);
+            }}
           >
             Login
           </Button>
