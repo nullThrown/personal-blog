@@ -1,10 +1,11 @@
 import axios from '../config/axios';
 import storage from '../util/storage';
+
 export const loginUser = async user => {
   try {
     const res = await axios.post('/auth/login', user);
-    console.log(res.data);
+    return res;
   } catch (err) {
-    console.log(err);
+    return Promise.reject(new Error(err));
   }
 };
