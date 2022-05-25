@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
 import axios from '../config/axios';
-
+import storage from '../util/storage';
 const UseAuth = () => {
-  const [isAuth, setIsAuth] = useState(null);
+  const [isAuth, setIsAuth] = useState(false);
 
   const fetchAuth = async () => {
-    let isTokenValid = false;
+    const token = storage.getToken();
+    if (!token) return isAuth;
     try {
-      // bad practice
-      // setIsAuth hook is still being run conditionally
-      // clever though
       const res = await axios.get('/auth');
-      if (res.data.msg === 'token_valid') isTokenValid = true;
-      setIsAuth(isTokenValid);
+      setIsAuth(() => res.data.msg === 'token_valid');
     } catch (err) {
+      storage.removeToken();
       console.log(err);
     }
   };
