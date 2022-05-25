@@ -1,4 +1,4 @@
-import axios from '../../config/axios';
+import axios from '../config/axios';
 
 // GET all posts
 export const fetchPosts = async () => {
@@ -7,6 +7,16 @@ export const fetchPosts = async () => {
     return res.data;
   } catch (err) {
     console.log(err);
+  }
+};
+// GET single post
+export const fetchSinglePost = async id => {
+  try {
+    const res = await axios.get(`/post/${id}`);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return err;
   }
 };
 // POST create new post
