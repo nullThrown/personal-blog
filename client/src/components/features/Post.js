@@ -1,4 +1,13 @@
-import { Box, Heading, Flex, Text, Center, Divider } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Flex,
+  Text,
+  Center,
+  Divider,
+  Link,
+} from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 import { readableDate } from '../../util/format';
 
 const Post = ({ post }) => {
@@ -23,9 +32,13 @@ const Post = ({ post }) => {
           </Text>
         </Center>
       </Flex>
-      <Text width="99%" margin="1em auto">
+      <Text width="99%" margin="1em auto" noOfLines={3}>
         {post.body}
       </Text>
+      <Link as={RouterLink} to={`/post/${post._id}`}>
+        Keep Reading
+      </Link>
+
       <Divider />
     </Box>
   );
