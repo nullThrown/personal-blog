@@ -78,7 +78,7 @@ router.put('/edit', verifyUser, async (req, res) => {
   }
 });
 
-// ROUTE GET api/post/delete
+// ROUTE GET api/post/all
 // DESC get all posts
 // ACCESS private
 router.get('/all', verifyUser, async (req, res) => {
@@ -86,6 +86,24 @@ router.get('/all', verifyUser, async (req, res) => {
   try {
     const user = await User.findById(userId);
     res.status(200).json(user.posts);
+  } catch (err) {
+    res.status(500).json(server_error);
+    console.log(err);
+  }
+});
+
+// ROUTE GET api/post/:id
+// DESC get single blog post
+// ACCESS private
+router.get('/:id', verifyUser, async (req, res) => {
+  const postId = req.params.id;
+  const userId = req.user.id;
+  try {
+    const user = await User.findById(userId);
+    const post = user.posts.find((post) => {
+      return String(post._id) === postId;
+    });
+    res.status(200).json(post);
   } catch (err) {
     res.status(500).json(server_error);
     console.log(err);
