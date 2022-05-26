@@ -9,6 +9,7 @@ export const fetchPosts = async () => {
     console.log(err);
   }
 };
+
 // GET single post
 export const fetchSinglePost = async id => {
   try {
