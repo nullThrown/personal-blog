@@ -1,10 +1,9 @@
 import { ChakraProvider, theme } from '@chakra-ui/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import AppRoutes from './routes/index';
-
-const queryClient = new QueryClient();
+import queryClient from './config/queryClient';
 
 function App() {
   return (
