@@ -2,25 +2,21 @@ General
   *look through components and reorganize them
   *add headings to typography
 
-  *create API axios calls 
-    -login 
-    -logout
-    -get single blog post (should be pulled from cache i suppose) 
+  *fix create post Mutation 
+    - create function that handles login and creates mutation 
+    - add loading handling
+    - add error/ handling
+    - add success page 
 
-    -create new post
-    -get all
-    -edit post
-    -delete post 
-
+  *add new banner image for /create 
+  *add pagination for posts
+  *add filter option to search posts  
+  
   * UseAuth() custom hook is not firing on redirect after login
     -it only fires on component mount -- will require another method
   *add react query to all routes 
     -how to structure react query code
-  *add react query to GET user, GET all posts, & POST create
   *look at protected-routes project to understand the different methods of auth routing 
-  *make sure banners are lined up
-    -add new banner image for /create 
-  *add pagination for posts
-  *add filter option to search posts  
+
 
 
