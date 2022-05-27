@@ -1,21 +1,20 @@
-General 
+General
+*fix isAuth hook to have a url param dependency
+  *add funct to logout button
+  *create page for account
   *look through components and reorganize them
-  *add headings to typography
-
+  *add edit and delete func to ind. blog post page
   *fix create post Mutation 
-    - create function that handles login and creates mutation 
-    - add loading handling
-    - add error/ handling
-    - add success page 
+      -add error handling 
+        -if error == server_error - display something
+        - if error == invalid-token -redirect
 
-  *add new banner image for /create 
   *add pagination for posts
   *add filter option to search posts  
   
   * UseAuth() custom hook is not firing on redirect after login
     -it only fires on component mount -- will require another method
-  *add react query to all routes 
-    -how to structure react query code
+
   *look at protected-routes project to understand the different methods of auth routing 
 
 
