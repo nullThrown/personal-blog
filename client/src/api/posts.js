@@ -27,6 +27,7 @@ export const createPost = async post => {
     return res.data;
   } catch (err) {
     console.log(err);
+    return Promise.reject(new Error(err));
   }
 };
 // PUT edit single post
