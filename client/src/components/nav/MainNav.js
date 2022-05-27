@@ -1,11 +1,7 @@
-import { Link, Box, Flex } from '@chakra-ui/react';
+import { Link, Box, Flex, Center } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-{
-  // chakra routing react-router-dom integration
-  /* <Link as={ReachLink} to="/home">
-  Home
-</Link>; */
-}
+import Logout from '../button/Logout';
+
 export const MainNav = () => {
   return (
     <Box
@@ -16,26 +12,33 @@ export const MainNav = () => {
       bg="rgb(235, 249, 252)"
     >
       <Flex as="nav">
-        <Link
-          as={RouterLink}
-          fontSize="lg"
-          fontWeight="500"
-          color="blue.900"
-          textDecoration="none"
-          to="/"
-        >
-          Home
-        </Link>
-        <Link
-          as={RouterLink}
-          ml=".6em"
-          fontSize="lg"
-          fontWeight="500"
-          color="blue.900"
-          to="/create"
-        >
-          Create
-        </Link>
+        <Center>
+          <Link
+            as={RouterLink}
+            fontSize="lg"
+            fontWeight="500"
+            color="blue.900"
+            textDecoration="none"
+            to="/"
+          >
+            Home
+          </Link>
+        </Center>
+        <Center>
+          <Link
+            as={RouterLink}
+            ml=".6em"
+            fontSize="lg"
+            fontWeight="500"
+            color="blue.900"
+            to="/create"
+          >
+            Create
+          </Link>
+        </Center>
+        <Box ml="auto">
+          <Logout />
+        </Box>
       </Flex>
     </Box>
   );
