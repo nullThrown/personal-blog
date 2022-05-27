@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { fetchPosts } from '../api/posts';
 import { useParams } from 'react-router-dom';
 import { readableDate } from '../util/format';
+import Header from '../components/layout/Header';
 
 const BlogPost = () => {
   let { id } = useParams();
@@ -19,8 +20,9 @@ const BlogPost = () => {
   }
   return (
     <MainContainer>
-      <Box as="article">
-        <Heading as="h3" fontSize="xl">
+      <Header bannerImg="/img/castle.jpg" headingTxt="Dionysus" />
+      <Box as="article" mt="2em">
+        <Heading as="h3" fontSize="4xl" fontWeight="400" textAlign="center">
           {singlePost.title}
         </Heading>
         <Flex>
@@ -39,7 +41,7 @@ const BlogPost = () => {
             </Text>
           </Center>
         </Flex>
-        <Text width="99%" margin="1em auto" noOfLines={3}>
+        <Text width="99%" margin="1em auto">
           {singlePost.body}
         </Text>
         <Divider />
