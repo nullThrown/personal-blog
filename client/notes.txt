@@ -1,7 +1,23 @@
 General
-*fix isAuth hook to have a url param dependency
-  *add funct to logout button
+
   *create page for account
+    -remember? we have just set up our mutation and route for checking auth 
+    -isEditLocked is now responding to our submit 
+    -we have onsuccess and onerror handling 
+    -the main concerns now are that the component is too big and messy 
+    -add loading state to Unlock btn
+    -and we need to UI change for editable vs non editable states    
+      -passwordUnlock Input is unmounted and Text should appear in its place
+      -big text that says so 
+      -Input border changes
+      -all account info starts out as inputs prop={readOnly} elements
+      -once unlocked - all inputs becomes writeable
+    -  add edit password func --- 2 inputs one primary and one confirm
+    - add add category input -- run match to see if category already exists, toLowercase to even it out
+    -add submit actions to both username/password & add Category
+    -separate sections (and submits) for regular account info and add new category
+
+  *add funct to logout button
   *look through components and reorganize them
   *add edit and delete func to ind. blog post page
   *fix create post Mutation 
