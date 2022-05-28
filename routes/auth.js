@@ -10,6 +10,7 @@ const {
   resource_created,
   token_valid,
   token_invalid,
+  password_match,
   invalid_credentials,
 } = require('../util/responseTypes');
 
@@ -77,6 +78,28 @@ router.post('/login', async (req, res) => {
         });
       }
     );
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(server_error);
+  }
+});
+
+// ROUTE POST api/auth/reauth
+// DESC authenticate  an already logged in user
+// ACCESS private
+router.post('/reauth', verifyUser, async (req, res) => {
+  try {
+    const { password } = req.body;
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(400).json(invalid_credentials);
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json(invalid_credentials);
+    }
+    return res.status(200).json(password_match);
   } catch (err) {
     console.log(err);
     res.status(500).json(server_error);
