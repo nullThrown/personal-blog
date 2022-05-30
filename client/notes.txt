@@ -7,7 +7,7 @@ General
     -the main concerns now are that the component is too big and messy 
     -add loading state to Unlock btn
     -and we need to UI change for editable vs non editable states    
-      -passwordUnlock Input is unmounted and Text should appear in its place
+      -passwordUnlock Input should unmount and Text should appear in its place
       -big text that says so 
       -Input border changes
       -all account info starts out as inputs prop={readOnly} elements
