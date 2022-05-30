@@ -5,6 +5,7 @@ import { fetchPosts } from '../api/posts';
 import { useParams } from 'react-router-dom';
 import { readableDate } from '../util/format';
 import Header from '../components/layout/Header';
+import MDEditor from '@uiw/react-md-editor';
 
 const BlogPost = () => {
   let { id } = useParams();
@@ -42,7 +43,7 @@ const BlogPost = () => {
           </Center>
         </Flex>
         <Text width="99%" margin="1em auto">
-          {singlePost.body}
+          <MDEditor.Markdown source={singlePost.body} />
         </Text>
         <Divider />
       </Box>
