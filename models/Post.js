@@ -15,5 +15,5 @@ const PostSchema = new Schema(
 
 // mongoose.model method is creating empty post model
 // we only need to export this schema
-module.exports = mongoose.model('post', PostSchema);
-// module.exports = PostSchema;
+// module.exports = mongoose.model('post', PostSchema);
+module.exports = PostSchema;
