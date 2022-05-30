@@ -7,6 +7,7 @@ import {
   Divider,
   Link,
 } from '@chakra-ui/react';
+import MDEditor from '@uiw/react-md-editor';
 import { Link as RouterLink } from 'react-router-dom';
 import { readableDate } from '../../util/format';
 
@@ -33,7 +34,7 @@ const Post = ({ post }) => {
         </Center>
       </Flex>
       <Text width="99%" margin="1em auto" noOfLines={3}>
-        {post.body}
+        <MDEditor.Markdown source={post.body} />
       </Text>
       <Link as={RouterLink} to={`/post/${post._id}`}>
         Keep Reading
