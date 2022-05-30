@@ -12,6 +12,7 @@ import {
   Center,
   VStack,
 } from '@chakra-ui/react';
+import MDEditor from '@uiw/react-md-editor';
 import ErrorMsg from '../typography/ErrorMsg';
 import { useState } from 'react';
 import { useMutation } from 'react-query';
@@ -28,7 +29,6 @@ const CreatePost = () => {
   });
   const mutatePost = useMutation(post => createPost(post), {
     onSuccess: data => {
-      console.log(data);
       queryClient.invalidateQueries('posts');
     },
     onError: error => {
@@ -37,7 +37,11 @@ const CreatePost = () => {
   });
 
   const onInputChange = e => {
-    setPost({ ...post, [e.target.name]: e.target.value });
+    if (typeof e === 'string') {
+      setPost({ ...post, body: e });
+    } else {
+      setPost({ ...post, [e.target.name]: e.target.value });
+    }
   };
   const handleSubmit = e => {
     e.preventDefault();
@@ -97,11 +101,17 @@ const CreatePost = () => {
         <option value="misc">philosophy</option>
         <option value="misc">sentimental</option>
       </Select>
-      <Textarea
+      {/* <Textarea
         height="800px"
         size="md"
         placeholder="Let the thoughts flow..."
         name="body"
+        onChange={onInputChange}
+      /> */}
+      <MDEditor
+        placeholder="let the thoughts flow..."
+        name="body"
+        value={post.body}
         onChange={onInputChange}
       />
       <Flex justifyContent="center" mt="2em">
