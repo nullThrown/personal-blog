@@ -25,6 +25,6 @@ export const reAuthUser = async password => {
     const res = await axios.post('/auth/reauth', { password });
     return res.data;
   } catch (err) {
-    return Promise.reject(err);
+    return Promise.reject(new Error(err));
   }
 };
