@@ -34,7 +34,7 @@ const Post = ({ post }) => {
         </Center>
       </Flex>
       <Text width="99%" margin="1em auto" noOfLines={3}>
-        <MDEditor.Markdown source={post.body} />
+        {post.body}
       </Text>
       <Link as={RouterLink} to={`/post/${post._id}`}>
         Keep Reading
