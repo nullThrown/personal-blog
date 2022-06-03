@@ -1,7 +1,17 @@
-import { Box, Heading, Flex, Text, Center, Divider } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Flex,
+  Text,
+  Center,
+  Divider,
+  Button,
+  Grid,
+  GridItem,
+} from '@chakra-ui/react';
 import MainContainer from '../components/base/MainContainer';
-import { useQuery } from 'react-query';
-import { fetchPosts } from '../api/posts';
+import { useMutation, useQuery } from 'react-query';
+import { fetchPosts, deletePost } from '../api/posts';
 import { useParams } from 'react-router-dom';
 import { readableDate } from '../util/format';
 import Header from '../components/layout/Header';
@@ -12,6 +22,8 @@ const BlogPost = () => {
 
   const { isLoading, data, isError, error } = useQuery('posts', fetchPosts);
   const singlePost = data?.find(post => post._id === id);
+
+  const delPost = useMutation(() => deletePost(id));
 
   if (isLoading) {
     return <h1>Im a spinner</h1>;
@@ -26,6 +38,17 @@ const BlogPost = () => {
         <Heading as="h3" fontSize="4xl" fontWeight="400" textAlign="center">
           {singlePost.title}
         </Heading>
+        <Flex>
+          <Button
+            type="button"
+            variant="ghost"
+            color="red.600"
+            ml="auto"
+            onClick={() => delPost.mutate(id)}
+          >
+            Delete
+          </Button>
+        </Flex>
         <Flex>
           <Text fontSize="md" mr="2px">
             Posted on
@@ -42,9 +65,10 @@ const BlogPost = () => {
             </Text>
           </Center>
         </Flex>
-        <Text width="99%" margin="1em auto">
-          <MDEditor.Markdown source={singlePost.body} />
-        </Text>
+        <MDEditor.Markdown
+          source={singlePost.body}
+          style={{ margin: '1em auto' }}
+        />
         <Divider />
       </Box>
     </MainContainer>
