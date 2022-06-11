@@ -18,17 +18,19 @@ import { useState } from 'react';
 import { useMutation } from 'react-query';
 import { createPost } from '../../api/posts';
 import queryClient from '../../config/queryClient';
+const initialState = {
+  author: 'hades',
+  title: '',
+  body: '',
+  category: '',
+  private: true,
+  keywords: [],
+};
 const CreatePost = () => {
-  const [post, setPost] = useState({
-    author: 'hades',
-    title: '',
-    body: '',
-    category: '',
-    private: true,
-    keywords: ['test keyword1', '2', '3'],
-  });
+  const [post, setPost] = useState(initialState);
   const mutatePost = useMutation(post => createPost(post), {
     onSuccess: data => {
+      setPost(initialState);
       queryClient.invalidateQueries('posts');
     },
     onError: error => {
