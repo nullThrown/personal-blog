@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { token_invalid } = require('../util/responseTypes');
+
 const verifyToken = (req, res, next) => {
   const token = req.header('x_auth_token');
 
