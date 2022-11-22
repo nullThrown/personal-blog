@@ -4,7 +4,7 @@ import authorizedRoutes from './authorized';
 import notAuthorizedRoutes from './notAuthorized';
 import UseAuth from '../hooks/UseAuth';
 
-export const AppRoutes = () => {
+const AppRoutes = () => {
   const errorRoute = { path: '/*', element: <NotFound /> };
 
   const isAuth = UseAuth();
