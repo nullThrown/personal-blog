@@ -80,7 +80,7 @@ const CreatePost = () => {
       <Heading size="lg" fontWeight="500" textAlign="center">
         Add New Post
       </Heading>
-      {mutatePost.isError && <ErrorMsg msg={mutatePost.error.msg} />}
+      {mutatePost.isError && <ErrorMsg msg="Something went Wrong : (" />}
       <FormLabel htmlFor="title">Title</FormLabel>
       <Input
         variant="flushed"
