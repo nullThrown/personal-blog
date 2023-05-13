@@ -15,7 +15,6 @@ const {
 // ACCESS private
 router.post('/create', verifyUser, async (req, res) => {
   const { author, title, body, category, private, keywords } = req.body;
-  console.log(req.user.id);
   try {
     const newPost = {
       author,
